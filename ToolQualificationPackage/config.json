@@ -1,0 +1,21 @@
+{
+  "WinIDEA":
+  {
+    "Id": "ToolQualificationPackage",
+    "Location": ""
+  },
+  "Is_hot_attach_available": true,
+  "Is_real_time_access_available": true,
+  "Num_hw_breakpoints": 6,
+  "Test_register":
+  {
+    "Name": "R0",
+    "Size": 32
+  },
+  "Flash":
+  {
+    "Hash_algorithms": ["crc32", "murmurhash"],
+    "Regions": [["0x00000800", "0x00180000"]]
+  },
+  "Workspace_location": "../CortexM_S32K148_gcc/iC5000.xjrf"
+}

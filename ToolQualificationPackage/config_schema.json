@@ -1,0 +1,94 @@
+{
+    "title": "TQP configuration file",
+    "description": "TQP configuration file that describes the tested target's properties.",
+
+    "type": "object",
+    "properties":
+    {
+        "WinIDEA": {
+            "description": "Fixed winIDEA id. DO NOT CHANGE",
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "description": "Fixed winIDEA id. DO NOT CHANGE",
+                    "type": "string",
+                    "minLength": 1
+                },
+                "Location": {
+                    "description": "Path to executable (winIDEA.exe) of winIDEA. Leave empty to connect to the most recently used winIDEA. Example: \"D:/User/winIDEA/winIDEA.exe\" or \"../winIDEA/winIDEA.exe\"",
+                    "type": "string"
+                }
+            },
+            "required": ["Id", "Location"],
+            "additionalItems": false
+        },
+        "Test_register": {
+            "description": "Properties of tested general purpose core register.",
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "description": "Name of the register, used in the assembly test file.  {\"r0\"/\"d1\"/...}",
+                    "type": "string",
+                    "minLength": 1
+                },
+                "Size": {
+                    "description": "Size of Test_register in bits. {8/16/32/64}",
+                    "type": "integer",
+                    "enum": [8, 16, 32, 64]
+                }
+            },
+            "required": ["Name", "Size"],
+            "additionalItems": false
+        },
+        "Is_hot_attach_available": {
+            "description": "Is the hot attach functionality supported. {true/false}",
+            "type": "boolean"
+        },
+        "Is_real_time_access_available": {
+            "description": "Is the real time access functionality supported. {true/false}",
+            "type": "boolean"
+        },
+        "Num_hw_breakpoints": {
+            "description": "Available hardware breakpoints. {6/8/…}",
+            "type": "integer",
+            "minimum": 1
+        },
+        "Flash": {
+            "description": "Information about the flash test.",
+            "properties": {
+                "Hash_algorithms": {
+                    "description": "One or more hashing algorithms to be used to flash test. Leave empty if the target does not have any internal flash. Supported algorithms: crc32, murmurhash. Example: [\"crc32\", \"murmurhash\"]",
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": ["crc32", "murmurhash"]
+                    }
+                },
+                "Regions": {
+                    "description": "Internal flash regions to be tested, must include start (included) and end address (excluded). Leave empty if the target does not have any internal flash. The regions must be accessible from the primary core. Warning: specified flash regions will be overwritten! Syntax: [[\"start_addr_1\", \"end_addr_1\"], [\"start_addr_2\", \"end_addr_2\"]...] Example: [[\"0x00000000\", \"0x00170000\"], [\"0x00180000\", \"0x00200000\"]]",
+                    "type": "array",
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "description": "Start address (included) and end address (excluded)",
+                            "type": "string",
+                            "pattern": "^(0[xX])?[abcdefABCDEF 0-9]+$"
+                        },
+                        "minItems": 2,
+                        "maxItems": 2
+                    },
+                    "uniqueItems": true
+                }
+            },
+            "required": ["Hash_algorithms", "Regions"],
+            "additionalItems": false
+        },
+        "Workspace_location": {
+            "description": "Path to winIDEA workspace (.xjrf file), used for testing. Example: \"D:/User/Board/workspace.xjrf\" or \"../Board/workspace.xjrf\"",
+            "type": "string",
+            "minLength": 1
+        }
+    },
+    "required": ["WinIDEA", "Test_register", "Is_hot_attach_available", "Is_real_time_access_available", "Num_hw_breakpoints", "Flash", "Workspace_location"],
+    "additionalProperties": false
+}

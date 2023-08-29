@@ -1,0 +1,5 @@
+pytest
+isystem.connect
+numpy
+pyelftools
+jsonschema

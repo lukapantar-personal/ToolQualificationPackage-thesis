@@ -1,0 +1,21 @@
+{
+  "WinIDEA":
+  {
+    "Id": "ToolQualificationPackage",
+    "Location": ""
+  },
+  "Is_hot_attach_available": true,
+  "Is_real_time_access_available": true,
+  "Num_hw_breakpoints": 8,
+  "Test_register":
+  {
+    "Name": "D0",
+    "Size": 32
+  },
+  "Flash":
+  {
+    "Hash_algorithms": ["crc32", "murmurhash"],
+    "Regions": [["0xA0080000", "0xA036A568"]]
+  },
+  "Workspace_location": "iC5700_DAP_AP.xjrf"
+}

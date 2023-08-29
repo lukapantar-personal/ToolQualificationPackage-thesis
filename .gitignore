@@ -1,0 +1,12 @@
+**/.idea
+**/.pytest_cache
+**/__pycache__
+**/workspace
+*.log
+*.s37
+*.o
+*.map
+*.mdf
+*.iyaml
+*.trd
+*.EmuSync
